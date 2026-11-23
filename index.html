@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Superinvestor 13F holdings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Superinvestor 13F holdings</h1>
+    <nav>
+      <a href="index.html" aria-current="page">Prototype</a>
+      <a href="alternatives.html">Encoding alternatives</a>
+    </nav>
+    <label class="control">Quarter
+      <input id="quarter" type="range" min="0" step="1">
+      <output id="quarter-label"></output>
+    </label>
+    <div id="chips" class="chips"></div>
+  </header>
+
+  <main>
+    <section>
+      <h2>1 · Consensus</h2>
+      <p class="question">Which stocks do the most superinvestors own, and has that consensus grown or faded since 2019?</p>
+      <div class="views">
+        <figure>
+          <figcaption>Most held stocks in the selected quarter. Click a row to compare it on the right.</figcaption>
+          <div id="ranking"></div>
+        </figure>
+        <figure>
+          <figcaption>Number of the 84 investors holding each selected stock. Click the chart to change the quarter.</figcaption>
+          <div id="trend"></div>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>2 · Unusual moves</h2>
+      <p class="question">Which stocks are they buying or selling together this quarter, and is that unusual?</p>
+      <div class="views">
+        <figure>
+          <figcaption>
+            One point per stock. Height: how far this quarter's net buying is from the stock's own last 8 quarters.
+            <label class="control">At least <output id="min-holders-label"></output> holders
+              <input id="min-holders" type="range" min="5" max="20" step="1">
+            </label>
+          </figcaption>
+          <div id="outliers"></div>
+        </figure>
+        <figure>
+          <figcaption id="history-caption"></figcaption>
+          <div id="history"></div>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>3 · Similar investors</h2>
+      <p class="question">Which investors hold similar portfolios, and which go their own way?</p>
+      <div class="views views-wide-left">
+        <figure>
+          <figcaption>Portfolio overlap of every pair of investors in the selected quarter. Similar investors sit next to each other. Click a row to follow one investor.</figcaption>
+          <div id="matrix"></div>
+        </figure>
+        <figure>
+          <figcaption id="neighbours-caption"></figcaption>
+          <div id="neighbours"></div>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Source: SEC Form 13F filings of 84 hand-picked managers, Q1 2019 to Q2 2026. A 13F only reports long positions in
+    US-listed securities. Positions without a ticker (1.1 % of the value) are missing in views 1 and 2. Share classes
+    (GOOG, GOOGL) are separate stocks. Sell and Buy waves caused by three near-empty filings are excluded from net buying.
+  </footer>
+
+  <script src="lib/d3.v7.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/consensus.js"></script>
+  <script src="js/moves.js"></script>
+  <script src="js/similarity.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

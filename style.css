@@ -1,0 +1,110 @@
+:root {
+  --surface: #fcfcfb;
+  --page: #f9f9f7;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6e69;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 14px/1.4 system-ui, sans-serif;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 10px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--grid);
+}
+
+h1 { margin: 0; font-size: 20px; }
+h2 { margin: 0; font-size: 18px; }
+.question { margin: 2px 0 12px; color: var(--ink-2); }
+
+.topbar nav { display: flex; gap: 16px; }
+.topbar nav a { padding: 2px 0; border-bottom: 2px solid transparent; color: var(--ink-2); text-decoration: none; }
+.topbar nav a:hover { color: var(--ink); }
+.topbar nav a[aria-current] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+
+main, footer { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+section { margin: 28px 0; }
+footer { padding-bottom: 32px; color: var(--muted); font-size: 12px; }
+
+.views { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.views-wide-left { grid-template-columns: 5fr 3fr; }
+
+figure {
+  margin: 0;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--grid);
+  border-radius: 6px;
+}
+figcaption { min-height: 40px; margin-bottom: 8px; color: var(--ink-2); font-size: 13px; }
+
+.control { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); }
+.control output { min-width: 56px; color: var(--ink); font-weight: 600; }
+figcaption .control { margin-left: 8px; }
+figcaption .control output { min-width: 0; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--grid);
+  border-radius: 12px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip i { width: 9px; height: 9px; border-radius: 50%; }
+.chip:hover { border-color: var(--muted); }
+
+svg { display: block; overflow: visible; }
+svg text { fill: var(--ink-2); font-size: 11px; }
+svg text.strong { fill: var(--ink); font-weight: 600; }
+svg text.faint { fill: var(--muted); }
+
+.axis path, .axis line { stroke: var(--axis); }
+.axis.grid line { stroke: var(--grid); }
+.rule { stroke: var(--ink); stroke-width: 1; }
+.hover-rule { stroke: var(--muted); stroke-dasharray: 3 3; }
+.overlay, .hit { fill: transparent; cursor: pointer; }
+.row:hover .hit { fill: #f0efec; }
+.band { fill: #f0efec; }
+.line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.context-line { fill: none; stroke: #d5d4cd; stroke-width: 1; }
+.selection-frame { fill: none; stroke: var(--ink); stroke-width: 1; pointer-events: none; }
+
+.tooltip {
+  position: absolute;
+  z-index: 3;
+  max-width: 280px;
+  padding: 6px 9px;
+  background: var(--surface);
+  border: 1px solid var(--axis);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+}
+.tooltip i { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; }
+
+@media (max-width: 900px) {
+  .views, .views-wide-left { grid-template-columns: 1fr; }
+}

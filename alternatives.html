@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encoding alternatives</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .views-three { grid-template-columns: repeat(3, 1fr); }
+    figcaption b { color: var(--ink); }
+    figcaption { min-height: 92px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Superinvestor 13F holdings</h1>
+    <nav>
+      <a href="index.html">Prototype</a>
+      <a href="alternatives.html" aria-current="page">Encoding alternatives</a>
+    </nav>
+    <span class="question" id="quarter-note"></span>
+  </header>
+  <main>
+    <section>
+      <h2>Q1 · discover the trend of holders per stock over the quarters</h2>
+      <p class="question">Attributes by priority: n_investors (quantitative), period_end (ordinal, 30), ticker (categorical).</p>
+      <div class="views views-three" id="q1"></div>
+    </section>
+    <section>
+      <h2>Q2 · discover outliers of net buying against the stock's own history</h2>
+      <p class="question">Attributes by priority: net_buying_z (quantitative, diverging), net_buying (quantitative, diverging), n_investors (quantitative), ticker (categorical).</p>
+      <div class="views views-three" id="q2"></div>
+    </section>
+    <section>
+      <h2>Q4 · discover similarity and outliers in the overlap between investors</h2>
+      <p class="question">Attributes by priority: overlap of a pair (quantitative, link attribute), investor_name (categorical, 84).</p>
+      <div class="views views-three" id="q4"></div>
+    </section>
+  </main>
+  <script src="lib/d3.v7.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/alternatives.js"></script>
+</body>
+</html>
